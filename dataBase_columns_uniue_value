@@ -1,0 +1,45 @@
+Brand
+['Mercedes',   'Nissan',  'Hyundai',    'Tesla',     'Audi',    'Honda',
+     'Ford',   'Toyota',      'BMW',      'Kia']
+     
+Manufacture_Year - number
+Body_Type
+['SUV', 'Coupe', 'Hatchback', 'Sedan', 'Pickup']
+
+Fuel_Type
+['Petrol', 'Diesel', 'Hybrid', 'Electric']
+
+Transmission
+['Manual', 'Automatic']
+
+Engine_CC - number
+Horsepower - number
+Mileage_km_per_l - number
+
+Manufacturing_Country
+['USA', 'China', 'UK', 'Japan', 'Germany', 'South Korea']
+
+Car_Age - number
+
+Price_Category
+['Premium', 'Mid-Range', 'Budget', 'Luxury']
+
+HP_per_CC - number
+Efficiency_Score - number
+
+
+"Demo Data for validation"
+
+"Brand": "Mercedes"
+"Manufacture_Year": 2006
+"Body_Type": "SUV"
+"Fuel_Type": "Petrol"
+"Transmission": "Manual"
+"Engine_CC":4089
+"Horsepower": 547
+"Mileage_km_per_l":17
+"Manufacturing_Country":"USA"
+"Car_Age":20
+"Price_Category": "Premium"
+"HP_per_CC": 0.1338
+"Efficiency_Score": 0.35    

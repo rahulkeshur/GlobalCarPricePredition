@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+    .container {
+        width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #1e293b;
+        border-radius: 10px;
+    }
+
+    input, select {
+        width: 90%;
+        padding: 10px;
+        margin: 8px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    button {
+        padding: 10px 20px;
+        background: #22c55e;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    h1 {
+        color: #38bdf8;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Car Price Prediction</h1>
+
+<div class="container">
+    <form action="{{url_for('predict')}}" method="POST">
+
+        <select name="Brand">
+            <option>Mercedes</option>
+            <option>Nissan</option>
+            <option>Hyundai</option>
+            <option>Tesla</option>
+            <option>Audi</option>
+            <option>Honda</option>
+            <option>Ford</option>
+            <option>Toyota</option>
+            <option>BMW</option>
+            <option>Kia</option>
+        </select>
+
+        <input type="number" name="Manufacture_Year" placeholder="Year">
+
+        <select name="Body_Type">
+            <option>SUV</option>
+            <option>Coupe</option>
+            <option>Hatchback</option>
+            <option>Sedan</option>
+            <option>Pickup</option>
+        </select>
+
+        <select name="Fuel_Type">
+            <option>Petrol</option>
+            <option>Diesel</option>
+            <option>Hybrid</option>
+            <option>Electric</option>
+        </select>
+
+        <select name="Transmission">
+            <option>Manual</option>
+            <option>Automatic</option>
+        </select>
+
+        <input type="number" name="Engine_CC" placeholder="Engine CC">
+        <input type="number" name="Horsepower" placeholder="Horsepower">
+        <input type="number" name="Mileage_km_per_l" placeholder="Mileage">
+
+        <select name="Manufacturing_Country">
+            <option>USA</option>
+            <option>China</option>
+            <option>UK</option>
+            <option>Japan</option>
+            <option>Germany</option>
+            <option>South Korea</option>
+        </select>
+
+        <input type="number" name="Car_Age" placeholder="Car Age">
+
+        <select name="Price_Category">
+            <option>Premium</option>
+            <option>Mid-Range</option>
+            <option>Budget</option>
+            <option>Luxury</option>
+        </select>
+
+        <input type="number" step="0.01" name="HP_per_CC" placeholder="HP per CC">
+        <input type="number" step="0.01" name="Efficiency_Score" placeholder="Efficiency">
+
+        <button type="submit">Predict Price</button>
+
+    </form>
+</div>
+{{prediction_text}}
+
+</body>
+</html>
