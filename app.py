@@ -44,7 +44,7 @@ def predict():
     final_input = prepare_input(data,columns,encoders)
     print(final_input)
     output=model.predict(final_input)[0]
-    return render_template("home.html",prediction_text="The car price rediction is {}".format(output))
+    return render_template("home.html",prediction_text="The car price rediction is ${}".format(output))
 
 
 

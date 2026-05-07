@@ -1,119 +1,226 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <title>Car Price Prediction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price</title>
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+
     <style>
-        body {
-            font-family: Arial;
-            background: #0f172a;
-            color: white;
-            text-align: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-    .container {
-        width: 400px;
-        margin: 50px auto;
-        padding: 20px;
-        background: #1e293b;
-        border-radius: 10px;
-    }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            color: white;
+        }
 
-    input, select {
-        width: 90%;
-        padding: 10px;
-        margin: 8px;
-        border-radius: 5px;
-        border: none;
-    }
+        .main-container {
+            width: 100%;
+            max-width: 950px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.4);
+        }
 
-    button {
-        padding: 10px 20px;
-        background: #22c55e;
-        border: none;
-        color: white;
-        cursor: pointer;
-        border-radius: 5px;
-    }
+        .title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
 
-    h1 {
-        color: #38bdf8;
-    }
-</style>
+        .title h1 {
+            font-size: 42px;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #cbd5e1;
+            font-size: 16px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            background: rgba(255,255,255,0.15);
+            transform: scale(1.02);
+            border: 1px solid #38bdf8;
+        }
+
+        option {
+            color: black;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(59,130,246,0.4);
+        }
+
+        .Prediction_out {
+            margin-top: 30px;
+            text-align: center;
+            padding: 18px;
+            border-radius: 15px;
+            background: rgba(34,197,94,0.15);
+            border: 1px solid rgba(34,197,94,0.4);
+            color: #4ade80;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        @media(max-width: 768px) {
+
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: span 1;
+            }
+
+            .title h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>Car Price Prediction</h1>
+    <div class="main-container">
 
-<div class="container">
-    <form action="{{url_for('predict')}}" method="POST">
+        <div class="title">
+            <h1>🚗 Car Price Prediction</h1>
+            <p>Smart AI-powered system to estimate car market price instantly</p>
+        </div>
 
-        <select name="Brand">
-            <option>Mercedes</option>
-            <option>Nissan</option>
-            <option>Hyundai</option>
-            <option>Tesla</option>
-            <option>Audi</option>
-            <option>Honda</option>
-            <option>Ford</option>
-            <option>Toyota</option>
-            <option>BMW</option>
-            <option>Kia</option>
-        </select>
+        <form action="{{url_for('predict')}}" method="POST">
 
-        <input type="number" name="Manufacture_Year" placeholder="Year">
+            <select name="Brand" required>
+                <option>Mercedes</option>
+                <option>Nissan</option>
+                <option>Hyundai</option>
+                <option>Tesla</option>
+                <option>Audi</option>
+                <option>Honda</option>
+                <option>Ford</option>
+                <option>Toyota</option>
+                <option>BMW</option>
+                <option>Kia</option>
+            </select>
 
-        <select name="Body_Type">
-            <option>SUV</option>
-            <option>Coupe</option>
-            <option>Hatchback</option>
-            <option>Sedan</option>
-            <option>Pickup</option>
-        </select>
+            <input type="number" name="Manufacture_Year" placeholder="Manufacture Year" required>
 
-        <select name="Fuel_Type">
-            <option>Petrol</option>
-            <option>Diesel</option>
-            <option>Hybrid</option>
-            <option>Electric</option>
-        </select>
+            <select name="Body_Type" required>
+                <option>SUV</option>
+                <option>Coupe</option>
+                <option>Hatchback</option>
+                <option>Sedan</option>
+                <option>Pickup</option>
+            </select>
 
-        <select name="Transmission">
-            <option>Manual</option>
-            <option>Automatic</option>
-        </select>
+            <select name="Fuel_Type" required>
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>Hybrid</option>
+                <option>Electric</option>
+            </select>
 
-        <input type="number" name="Engine_CC" placeholder="Engine CC">
-        <input type="number" name="Horsepower" placeholder="Horsepower">
-        <input type="number" name="Mileage_km_per_l" placeholder="Mileage">
+            <select name="Transmission" required>
+                <option>Manual</option>
+                <option>Automatic</option>
+            </select>
 
-        <select name="Manufacturing_Country">
-            <option>USA</option>
-            <option>China</option>
-            <option>UK</option>
-            <option>Japan</option>
-            <option>Germany</option>
-            <option>South Korea</option>
-        </select>
+            <input type="number" name="Engine_CC" placeholder="Engine CC" required>
 
-        <input type="number" name="Car_Age" placeholder="Car Age">
+            <input type="number" name="Horsepower" placeholder="Horsepower" required>
 
-        <select name="Price_Category">
-            <option>Premium</option>
-            <option>Mid-Range</option>
-            <option>Budget</option>
-            <option>Luxury</option>
-        </select>
+            <input type="number" name="Mileage_km_per_l" placeholder="Mileage KM/L" required>
 
-        <input type="number" step="0.01" name="HP_per_CC" placeholder="HP per CC">
-        <input type="number" step="0.01" name="Efficiency_Score" placeholder="Efficiency">
+            <select name="Manufacturing_Country" required>
+                <option>USA</option>
+                <option>China</option>
+                <option>UK</option>
+                <option>Japan</option>
+                <option>Germany</option>
+                <option>South Korea</option>
+            </select>
 
-        <button type="submit">Predict Price</button>
+            <input type="number" name="Car_Age" placeholder="Car Age" required>
 
-    </form>
-</div>
-{{prediction_text}}
+            <select name="Price_Category" required>
+                <option>Premium</option>
+                <option>Mid-Range</option>
+                <option>Budget</option>
+                <option>Luxury</option>
+            </select>
+
+            <input type="number" step="0.01" name="HP_per_CC" placeholder="HP per CC" required>
+
+            <input type="number" step="0.01" name="Efficiency_Score" placeholder="Efficiency Score" required>
+
+            <div class="full-width">
+                <button type="submit">Predict Car Price</button>
+            </div>
+
+        </form>
+
+        {% if prediction_text %}
+        <div class="Prediction_out">
+            {{prediction_text}}
+        </div>
+        {% endif %}
+
+    </div>
 
 </body>
+
 </html>
